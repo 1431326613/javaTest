@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oumyye.mapping.UserMapping">
+    <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复
+    使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+    resultType="com.oumyye.model.User"就表示将查询结果封装成一个User类的对象返回
+    User类就是users表所对应的实体类
+    -->
+    <!-- 
+        根据id查询得到一个user对象
+     -->
+    <select id="getUser"     parameterType="String"  
+        resultType="com.oumyye.model.User">
+        select * from user where name=#{id}
+    </select>
+    
+    
+      
+      <insert id="addUser" parameterType="com.oumyye.model.User" 
+        > 
+        insert into user(name)  
+             values(#{name})  
+    </insert>
+    
+     <!-- 查询全部用户-->
+     <select id="getAllUsers" resultType="com.oumyye.model.User">
+         select * from user
+     </select>
+     
+     
+      <!-- 删除用户(Remove) -->
+     <delete id="deleteUser" parameterType="String">
+         delete from user where name=#{name}
+     </delete>
+    
+</mapper>
