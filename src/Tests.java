@@ -26,10 +26,10 @@ public class Tests {
 	        	 //xmlGet(session);
 	 	      // classGet(session,"jacky");
 	 	     // classGet(session,"xx");
-	          //addGet(session);
+	         //  addGet(session,"jacky2");
 	        	
-	        //	addXmlGet(session);
-	        
+	        //	addXmlGet(session,"jacky1");
+	          
 	        	//delete(session,"xx");
 	        	xmlGetAll(session);
 	        	
@@ -42,21 +42,21 @@ public class Tests {
 	        
 	  }
 	  
-	  static void addGet(SqlSession session)
+	  static void addGet(SqlSession session,String name)
 	  {
 		//执行查询返回一个唯一user对象的sql
 		  UserMapper userMapper=  session.getMapper(UserMapper.class);
 		  User user=new User();
-		  user.setName("xx");
+		  user.setName(name);
 		  userMapper.addUser(user);
 		  session.commit();
 	        System.out.println(user.toString());
 	  }
-	  static void addXmlGet(SqlSession session)
+	  static void addXmlGet(SqlSession session,String name)
 	  {
 		  
 		  User user=new User();
-		  user.setName("xx");
+		  user.setName(name);
 		  
 		  String statement = "com.oumyye.mapping.UserMapping.addUser";//映射sql的标识字符串
 		  int result= session.insert(statement, user);
